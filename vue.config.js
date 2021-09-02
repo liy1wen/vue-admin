@@ -38,7 +38,7 @@ module.exports = {
     },
     proxy: {
       "/v1": {
-        target: "https://employee-idcard.yz-intelligence.com/", // 服务器api地址
+        target: "http://localhost:9527/", // 服务器api地址
         changeOrigin: true, // 是否跨域
         ws: true, // proxy websockets
         pathRewrite: {
@@ -72,6 +72,22 @@ module.exports = {
 
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete("prefetch");
+    // set svg-sprite-loader
+    config.module
+      .rule("svg")
+      .exclude.add(resolve("src/icons"))
+      .end();
+    config.module
+      .rule("icons")
+      .test(/\.svg$/)
+      .include.add(resolve("src/icons"))
+      .end()
+      .use("svg-sprite-loader")
+      .loader("svg-sprite-loader")
+      .options({
+        symbolId: "icon-[name]"
+      })
+      .end();
 
     config.when(process.env.NODE_ENV !== "development", config => {
       config

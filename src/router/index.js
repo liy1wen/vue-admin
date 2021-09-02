@@ -58,7 +58,7 @@ export const constantRoutes = [
         name: "Dashboard",
         component: () => import("@/views/dashboard/index"),
         meta: {
-          title: "Dashboard",
+          title: "控制面板",
           icon: "icon-dashboard",
           roles: ["admin", "editor"]
         }
@@ -66,16 +66,33 @@ export const constantRoutes = [
     ]
   },
   {
-    path: "/form",
+    path: "/icon",
     component: Layout,
-    redirect: "/form/index",
-    meta: { roles: ["admin", "editor"] },
     children: [
       {
         path: "index",
-        name: "Form",
+        component: () => import("@/views/icons/index"),
+        name: "Icon",
+        meta: { title: "图标", icon: "icon-tubiao", noCache: true }
+      }
+    ]
+  },
+  {
+    path: "/form",
+    component: Layout,
+    redirect: "/form/index",
+    name: "form",
+    meta: {
+      title: "表格",
+      icon: "icon-form1",
+      roles: ["admin", "editor"]
+    },
+    children: [
+      {
+        path: "index",
+        name: "form",
         component: () => import("@/views/form/index"),
-        meta: { title: "Form", icon: "icon-form", roles: ["admin", "editor"] }
+        meta: { title: "表单", icon: "icon-form", roles: ["admin", "editor"] }
       }
     ]
   },
@@ -89,7 +106,11 @@ export const constantRoutes = [
         path: "index",
         name: "screen",
         component: () => import("@/views/screenOne/index"),
-        meta: { title: "screen", icon: "icon-form", roles: ["admin", "editor"] }
+        meta: {
+          title: "上传头像",
+          icon: "icon-form",
+          roles: ["admin", "editor"]
+        }
       }
     ]
   },
@@ -101,9 +122,9 @@ export const constantRoutes = [
     children: [
       {
         path: "index",
-        name: "chart",
+        name: "echart",
         component: () => import("@/views/chart/index"),
-        meta: { title: "chart", icon: "icon-form", roles: ["admin", "editor"] }
+        meta: { title: "图表", icon: "icon-form", roles: ["admin", "editor"] }
       }
     ]
   },
@@ -111,9 +132,9 @@ export const constantRoutes = [
     path: "/nested",
     component: Layout,
     redirect: "/nested/menu1",
-    name: "Nested",
+    name: "nested",
     meta: {
-      title: "Nested",
+      title: "路由嵌套",
       icon: "icon-nested",
       roles: ["admin", "editor"]
     },
@@ -188,45 +209,35 @@ export const constantRoutes = [
       }
     ]
   },
-  // 404 page must be placed at the end !!!
   {
-    path: "*",
-    redirect: "/404",
-    hidden: true,
-    meta: {}
-  }
-];
-
-export const asyncRouter = [
-  {
-    path: "/example",
+    path: "/table",
     component: Layout,
-    redirect: "/example/table",
-    name: "Example",
+    redirect: "/table/complex-table",
+    name: "table",
     meta: {
-      title: "Example",
-      icon: "icon-example",
+      title: "表格",
+      icon: "icon-form1",
       roles: ["admin", "editor"]
     },
     children: [
       {
-        path: "table",
-        name: "Table",
-        component: () => import("@/views/table/index"),
+        path: "complex-table",
+        name: "complex-table",
+        component: () => import("@/views/table/complex-table"),
         meta: {
-          title: "Table",
+          title: "完整功能表格",
           roles: ["admin", "editor"],
-          icon: "icon-example"
+          icon: "icon-form1"
         }
       },
       {
-        path: "tree",
-        name: "Tree",
-        component: () => import("@/views/tree/index"),
+        path: "inline-edit-table",
+        name: "inline-edit-table",
+        component: () => import("@/views/table/inline-edit-table"),
         meta: {
-          title: "Tree",
+          title: "内联表格编辑",
           roles: ["editor"],
-          icon: "icon-example"
+          icon: "icon-form1"
         }
       }
     ]
@@ -245,8 +256,16 @@ export const asyncRouter = [
         }
       }
     ]
+  },
+  // 404 page must be placed at the end !!!
+  {
+    path: "*",
+    redirect: "/404",
+    hidden: true,
+    meta: {}
   }
 ];
+
 const createRouter = () =>
   new Router({
     // mode: 'history', // require service support

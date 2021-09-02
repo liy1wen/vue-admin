@@ -5,8 +5,12 @@ import { getToken } from "@/utils/auth";
 let count = 0;
 let loadingInstance = null;
 const closeLoading = () => {
+  console.log(count, "===");
   count--;
-  if (count == 0) loadingInstance.close();
+  if (count == 0) {
+    // console.log(loadingInstance.close());
+    loadingInstance.close();
+  }
 };
 // create an axios instance
 const service = axios.create({
@@ -20,7 +24,9 @@ service.interceptors.request.use(
   config => {
     if (count == 0) {
       loadingInstance = Loading.service({
-        fullscreen: true
+        fullscreen: true,
+        spinner: "el-icon-loading",
+        text: "拼命加载中"
       });
     }
     count++;
@@ -41,10 +47,9 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     loadingInstance && closeLoading();
-    console.log(111111111111111111111, response.data);
     const res = response.data;
-    if (res.rsp_comm.code !== 0) {
-      switch (res.rsp_comm.code) {
+    if (res.code !== 20000) {
+      switch (res.code) {
         case 400:
           Message.error("错误请求");
           break;
@@ -96,7 +101,6 @@ service.interceptors.response.use(
       }
       return Promise.reject(new Error(res.message || "Error"));
     } else {
-      console.log(1111111111);
       return Promise.resolve(res);
     }
   },

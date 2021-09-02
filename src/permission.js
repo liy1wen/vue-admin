@@ -5,14 +5,8 @@ import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
 import { getToken } from "@/utils/auth"; // get token from cookie
 import getPageTitle from "@/utils/get-page-title";
-import { constantRoutes, asyncRouter } from "@/router/index";
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
-function hasPermission(role, router) {
-  if (router.meta && router.meta.roles) {
-    return router.meta.roles.includes(role);
-  }
-}
 const whiteList = ["/login", "/404"]; // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
@@ -31,19 +25,6 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const hasGetUserInfo = store.getters.name;
       if (hasGetUserInfo) {
-        const role = store.getters.role.join();
-        const newRoutes = asyncRouter.filter(item => {
-          if (hasPermission(role, item)) {
-            if (item.children && item.children.length > 0) {
-              item.children = item.children.filter(child_item =>
-                hasPermission(role, child_item)
-              );
-            }
-            return item;
-          }
-        });
-        router.options.routes = constantRoutes.concat(newRoutes);
-        router.addRoutes(newRoutes);
         next();
       } else {
         try {

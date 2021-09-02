@@ -1,8 +1,8 @@
 import axios from "@/utils/request";
 
-export const login = (p, config) => axios.post("/adm/login", p, config);
+export const login = p => axios.post("/vue-element-admin/user/login", p);
 
 export const getInfo = token =>
-  axios.get("/vue-admin-template/user/info", { token });
+  axios.get("/vue-element-admin/user/info", { token });
 
-export const logout = () => axios.post("/vue-admin-template/user/logout");
+export const logout = () => axios.post("/vue-element-admin/user/logout");
