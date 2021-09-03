@@ -49,7 +49,8 @@ export const constantRoutes = [
     path: "/",
     component: Layout,
     meta: {
-      roles: ["admin", "editor"]
+      roles: ["admin", "editor"],
+      icon: "icon-dashboard"
     },
     redirect: "/dashboard",
     children: [
@@ -59,8 +60,8 @@ export const constantRoutes = [
         component: () => import("@/views/dashboard/index"),
         meta: {
           title: "控制面板",
-          icon: "icon-dashboard",
-          roles: ["admin", "editor"]
+          roles: ["admin", "editor"],
+          affix: true
         }
       }
     ]
@@ -68,12 +69,16 @@ export const constantRoutes = [
   {
     path: "/icon",
     component: Layout,
+    meta: {
+      roles: ["admin", "editor"],
+      icon: "icon-tubiao"
+    },
     children: [
       {
         path: "index",
         component: () => import("@/views/icons/index"),
         name: "Icon",
-        meta: { title: "图标", icon: "icon-tubiao", noCache: true }
+        meta: { title: "图标", noCache: true }
       }
     ]
   },
@@ -84,15 +89,15 @@ export const constantRoutes = [
     name: "form",
     meta: {
       title: "表格",
-      icon: "icon-form1",
-      roles: ["admin", "editor"]
+      roles: ["admin", "editor"],
+      icon: "icon-form1"
     },
     children: [
       {
         path: "index",
         name: "form",
         component: () => import("@/views/form/index"),
-        meta: { title: "表单", icon: "icon-form", roles: ["admin", "editor"] }
+        meta: { title: "表单", roles: ["admin", "editor"] }
       }
     ]
   },
@@ -100,7 +105,7 @@ export const constantRoutes = [
     path: "/screen",
     component: Layout,
     redirect: "/screen/index",
-    meta: { roles: ["admin", "editor"] },
+    meta: { roles: ["admin", "editor"], icon: "icon-form" },
     children: [
       {
         path: "index",
@@ -108,7 +113,6 @@ export const constantRoutes = [
         component: () => import("@/views/screenOne/index"),
         meta: {
           title: "上传头像",
-          icon: "icon-form",
           roles: ["admin", "editor"]
         }
       }
@@ -118,13 +122,13 @@ export const constantRoutes = [
     path: "/chart",
     component: Layout,
     redirect: "/chart/index",
-    meta: { roles: ["admin", "editor"] },
+    meta: { roles: ["admin", "editor"], icon: "icon-form" },
     children: [
       {
         path: "index",
         name: "echart",
         component: () => import("@/views/chart/index"),
-        meta: { title: "图表", icon: "icon-form", roles: ["admin", "editor"] }
+        meta: { title: "图表", roles: ["admin", "editor"] }
       }
     ]
   },
@@ -143,7 +147,7 @@ export const constantRoutes = [
         path: "menu1",
         component: () => import("@/views/nested/menu1/index"), // Parent router-view
         name: "Menu1",
-        meta: { title: "Menu1", icon: "icon-nested" },
+        meta: { title: "Menu1" },
         children: [
           {
             path: "menu1-1",
@@ -151,15 +155,14 @@ export const constantRoutes = [
             name: "Menu1-1",
             meta: {
               title: "Menu1-1",
-              roles: ["admin", "editor"],
-              icon: "icon-nested"
+              roles: ["admin", "editor"]
             }
           },
           {
             path: "menu1-2",
             component: () => import("@/views/nested/menu1/menu1-2"),
             name: "Menu1-2",
-            meta: { title: "Menu1-2", icon: "icon-nested" },
+            meta: { title: "Menu1-2" },
             children: [
               {
                 path: "menu1-2-1",
@@ -168,8 +171,7 @@ export const constantRoutes = [
                 name: "Menu1-2-1",
                 meta: {
                   title: "Menu1-2-1",
-                  roles: ["admin", "editor"],
-                  icon: "icon-nested"
+                  roles: ["admin", "editor"]
                 }
               },
               {
@@ -179,8 +181,7 @@ export const constantRoutes = [
                 name: "Menu1-2-2",
                 meta: {
                   title: "Menu1-2-2",
-                  roles: ["admin"],
-                  icon: "icon-nested"
+                  roles: ["admin"]
                 }
               }
             ]
@@ -191,8 +192,7 @@ export const constantRoutes = [
             name: "Menu1-3",
             meta: {
               title: "Menu1-3",
-              roles: ["admin", "editor"],
-              icon: "icon-nested"
+              roles: ["admin", "editor"]
             }
           }
         ]
@@ -203,8 +203,7 @@ export const constantRoutes = [
         name: "Menu2",
         meta: {
           title: "menu2",
-          roles: ["admin", "editor"],
-          icon: "icon-nested"
+          roles: ["admin", "editor"]
         }
       }
     ]
@@ -226,8 +225,7 @@ export const constantRoutes = [
         component: () => import("@/views/table/complex-table"),
         meta: {
           title: "完整功能表格",
-          roles: ["admin", "editor"],
-          icon: "icon-form1"
+          roles: ["admin", "editor"]
         }
       },
       {
@@ -236,8 +234,7 @@ export const constantRoutes = [
         component: () => import("@/views/table/inline-edit-table"),
         meta: {
           title: "内联表格编辑",
-          roles: ["editor"],
-          icon: "icon-form1"
+          roles: ["editor"]
         }
       }
     ]
@@ -245,13 +242,12 @@ export const constantRoutes = [
   {
     path: "external-link",
     component: Layout,
-    meta: { roles: ["admin", "editor"] },
+    meta: { roles: ["admin", "editor"], icon: "icon-link" },
     children: [
       {
         path: "https://panjiachen.github.io/vue-element-admin-site/#/",
         meta: {
           title: "External Link1",
-          icon: "icon-link",
           roles: ["admin", "editor"]
         }
       }
