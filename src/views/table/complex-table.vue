@@ -3,14 +3,14 @@
     <div class="filter-container">
       <el-input
         v-model="listQuery.title"
-        placeholder="Title"
+        placeholder="标题"
         style="width: 200px;"
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
       <el-select
         v-model="listQuery.importance"
-        placeholder="Imp"
+        placeholder="重要性"
         clearable
         style="width: 90px"
         class="filter-item"
@@ -24,7 +24,7 @@
       </el-select>
       <el-select
         v-model="listQuery.type"
-        placeholder="Type"
+        placeholder="类型"
         clearable
         class="filter-item"
         style="width: 130px"
@@ -56,16 +56,15 @@
         icon="el-icon-search"
         @click="handleFilter"
       >
-        Search
+        搜索
       </el-button>
       <el-button
         class="filter-item"
-        style="margin-left: 10px;"
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
       >
-        Add
+        添加
       </el-button>
       <el-button
         v-waves
@@ -75,7 +74,7 @@
         icon="el-icon-download"
         @click="handleDownload"
       >
-        Export
+        导出
       </el-button>
       <el-checkbox
         v-model="showReviewer"
@@ -83,7 +82,7 @@
         style="margin-left:15px;"
         @change="tableKey = tableKey + 1"
       >
-        reviewer
+        审核人
       </el-checkbox>
     </div>
 
@@ -97,7 +96,7 @@
       @sort-change="sortChange"
     >
       <el-table-column
-        label="ID"
+        label="序号"
         prop="id"
         sortable="custom"
         align="center"
@@ -108,12 +107,12 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Date" width="150px" align="center">
+      <el-table-column label="时间" width="150px" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.timestamp | parseTime("{y}-{m}-{d} {h}:{i}") }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Title" min-width="150px">
+      <el-table-column label="标题" min-width="150px">
         <template slot-scope="{ row }">
           <span class="link-type" @click="handleUpdate(row)">{{
             row.title
@@ -121,14 +120,14 @@
           <el-tag>{{ row.type | typeFilter }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110px" align="center">
+      <el-table-column label="作者" width="110px" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.author }}</span>
         </template>
       </el-table-column>
       <el-table-column
         v-if="showReviewer"
-        label="Reviewer"
+        label="审核人"
         width="110px"
         align="center"
       >
@@ -136,7 +135,7 @@
           <span style="color:red;">{{ row.reviewer }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Imp" width="80px">
+      <el-table-column label="重要性" width="80px">
         <template slot-scope="{ row }">
           <svg-icon
             v-for="n in +row.importance"
@@ -146,7 +145,7 @@
           />
         </template>
       </el-table-column>
-      <el-table-column label="Readings" align="center" width="95">
+      <el-table-column label="阅读数" align="center" width="95">
         <template slot-scope="{ row }">
           <span
             v-if="row.pageviews"
@@ -157,7 +156,7 @@
           <span v-else>0</span>
         </template>
       </el-table-column>
-      <el-table-column label="Status" class-name="status-col" width="100">
+      <el-table-column label="状态" class-name="status-col" width="100">
         <template slot-scope="{ row }">
           <el-tag :type="row.status | statusFilter">
             {{ row.status }}
@@ -165,14 +164,14 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="Actions"
+        label="操作"
         align="center"
         width="230"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row, $index }">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
+            编辑
           </el-button>
           <el-button
             v-if="row.status != 'published'"
@@ -180,14 +179,14 @@
             type="success"
             @click="handleModifyStatus(row, 'published')"
           >
-            Publish
+            发布
           </el-button>
           <el-button
             v-if="row.status != 'draft'"
             size="mini"
             @click="handleModifyStatus(row, 'draft')"
           >
-            Draft
+            草稿
           </el-button>
           <el-button
             v-if="row.status != 'deleted'"
@@ -195,7 +194,7 @@
             type="danger"
             @click="handleDelete(row, $index)"
           >
-            Delete
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -564,3 +563,12 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.filter-container {
+  margin-bottom: 15px;
+  .filter-item {
+    margin-right: 10px;
+    margin-left: 0;
+  }
+}
+</style>
