@@ -32,6 +32,17 @@ import Layout from "@/layout";
  */
 export const constantRoutes = [
   {
+    path: "/redirect",
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: "/redirect/:path(.*)",
+        component: () => import("@/views/redirect/index")
+      }
+    ]
+  },
+  {
     path: "/login",
     component: () => import("@/views/login/index"),
     hidden: true,
@@ -86,7 +97,6 @@ export const constantRoutes = [
     path: "/form",
     component: Layout,
     redirect: "/form/index",
-    name: "form",
     meta: {
       title: "表格",
       roles: ["admin", "editor"],
@@ -95,7 +105,7 @@ export const constantRoutes = [
     children: [
       {
         path: "index",
-        name: "form",
+        name: "Form",
         component: () => import("@/views/form/index"),
         meta: { title: "表单", roles: ["admin", "editor"] }
       }
@@ -109,7 +119,7 @@ export const constantRoutes = [
     children: [
       {
         path: "index",
-        name: "screen",
+        name: "Screen",
         component: () => import("@/views/screenOne/index"),
         meta: {
           title: "上传头像",
@@ -126,7 +136,7 @@ export const constantRoutes = [
     children: [
       {
         path: "index",
-        name: "echart",
+        name: "Echart",
         component: () => import("@/views/chart/index"),
         meta: { title: "图表", roles: ["admin", "editor"] }
       }
@@ -212,7 +222,6 @@ export const constantRoutes = [
     path: "/table",
     component: Layout,
     redirect: "/table/complex-table",
-    name: "table",
     meta: {
       title: "表格",
       icon: "icon-form1",
@@ -221,7 +230,7 @@ export const constantRoutes = [
     children: [
       {
         path: "complex-table",
-        name: "complex-table",
+        name: "ComplexTable",
         component: () => import("@/views/table/complex-table"),
         meta: {
           title: "完整功能表格",
@@ -230,10 +239,19 @@ export const constantRoutes = [
       },
       {
         path: "inline-edit-table",
-        name: "inline-edit-table",
+        name: "InlineEditTable",
         component: () => import("@/views/table/inline-edit-table"),
         meta: {
           title: "内联表格编辑",
+          roles: ["editor"]
+        }
+      },
+      {
+        path: "drag-table",
+        name: "DragTable",
+        component: () => import("@/views/table/drag-table"),
+        meta: {
+          title: "拖拽表格",
           roles: ["editor"]
         }
       }

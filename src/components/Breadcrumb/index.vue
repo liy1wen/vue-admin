@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      // console.log(this.$route,'+++++++++++++');
+      console.log(this.$route, "+++++++++++++");
       // only show routes with meta.title
       let matched = this.$route.matched.filter(
         item => item.meta && item.meta.title
@@ -60,7 +60,6 @@ export default {
       );
     },
     pathCompile(path) {
-      // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
       const { params } = this.$route;
       var toPath = pathToRegexp.compile(path);
       return toPath(params);
