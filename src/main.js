@@ -15,6 +15,10 @@ import router from "./router";
 import "./icons"; // icon
 import "@/permission"; // permission control
 import * as filters from "./filters"; // global filters
+
+import mavonEditor from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+Vue.use(mavonEditor);
 // 无缝滚动插件
 import scroll from "vue-seamless-scroll";
 Vue.use(scroll);

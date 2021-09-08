@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont";
   /* Project id 2513303 */
-  src: url('//at.alicdn.com/t/font_2513303_iah5ydjkc8n.woff2?t=1631026591937') format('woff2'),
-    url('//at.alicdn.com/t/font_2513303_iah5ydjkc8n.woff?t=1631026591937') format('woff'),
-    url('//at.alicdn.com/t/font_2513303_iah5ydjkc8n.ttf?t=1631026591937') format('truetype');
+  src: url('//at.alicdn.com/t/font_2513303_743tsm8b5u.woff2?t=1631086169084') format('woff2'),
+    url('//at.alicdn.com/t/font_2513303_743tsm8b5u.woff?t=1631086169084') format('woff'),
+    url('//at.alicdn.com/t/font_2513303_743tsm8b5u.ttf?t=1631086169084') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +12,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pdf:before {
+  content: "\e740";
+}
+
+.icon-zip:before {
+  content: "\e741";
+}
+
+.icon-tubiao-zhexiantu:before {
+  content: "\eb96";
+}
+
+.icon-excel:before {
+  content: "\e613";
+}
+
+.icon-shujuquanxian:before {
+  content: "\e64d";
 }
 
 .icon-tuozhuai:before {

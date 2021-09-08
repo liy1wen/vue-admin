@@ -55,24 +55,83 @@ export const constantRoutes = [
     hidden: true,
     meta: {}
   },
-
   {
     path: "/",
     component: Layout,
-    meta: {
-      roles: ["admin", "editor"],
-      icon: "icon-dashboard"
-    },
     redirect: "/dashboard",
+    meta: {
+      icon: "icon-dashboard",
+      title: "控制台"
+    },
     children: [
       {
         path: "dashboard",
-        name: "Dashboard",
         component: () => import("@/views/dashboard/index"),
+        name: "Dashboard",
         meta: {
-          title: "控制面板",
-          roles: ["admin", "editor"],
+          title: "控制台",
           affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/form",
+    component: Layout,
+    redirect: "/form/index",
+    meta: {
+      title: "表格",
+      icon: "icon-form1"
+    },
+    children: [
+      {
+        path: "index",
+        name: "Form",
+        component: () => import("@/views/form/index"),
+        meta: { title: "表单" }
+      }
+    ]
+  },
+  {
+    path: "/screen",
+    component: Layout,
+    redirect: "/screen/index",
+    meta: { icon: "icon-form" },
+    children: [
+      {
+        path: "index",
+        name: "Screen",
+        component: () => import("@/views/screenOne/index"),
+        meta: {
+          title: "上传头像"
+        }
+      }
+    ]
+  },
+  {
+    path: "/chart",
+    component: Layout,
+    redirect: "/chart/index",
+    meta: { icon: "icon-bargraph" },
+    children: [
+      {
+        path: "index",
+        name: "Echart",
+        component: () => import("@/views/chart/index"),
+        meta: { title: "图表" }
+      }
+    ]
+  },
+  {
+    path: "external-link",
+    component: Layout,
+    meta: { roles: ["admin", "editor"], icon: "icon-link" },
+    children: [
+      {
+        path: "https://panjiachen.github.io/vue-element-admin-site/#/",
+        meta: {
+          title: "External Link1",
+          roles: ["admin", "editor"]
         }
       }
     ]
@@ -90,55 +149,6 @@ export const constantRoutes = [
         component: () => import("@/views/icons/index"),
         name: "Icon",
         meta: { title: "图标", noCache: true }
-      }
-    ]
-  },
-  {
-    path: "/form",
-    component: Layout,
-    redirect: "/form/index",
-    meta: {
-      title: "表格",
-      roles: ["admin", "editor"],
-      icon: "icon-form1"
-    },
-    children: [
-      {
-        path: "index",
-        name: "Form",
-        component: () => import("@/views/form/index"),
-        meta: { title: "表单", roles: ["admin", "editor"] }
-      }
-    ]
-  },
-  {
-    path: "/screen",
-    component: Layout,
-    redirect: "/screen/index",
-    meta: { roles: ["admin", "editor"], icon: "icon-form" },
-    children: [
-      {
-        path: "index",
-        name: "Screen",
-        component: () => import("@/views/screenOne/index"),
-        meta: {
-          title: "上传头像",
-          roles: ["admin", "editor"]
-        }
-      }
-    ]
-  },
-  {
-    path: "/chart",
-    component: Layout,
-    redirect: "/chart/index",
-    meta: { roles: ["admin", "editor"], icon: "icon-form" },
-    children: [
-      {
-        path: "index",
-        name: "Echart",
-        component: () => import("@/views/chart/index"),
-        meta: { title: "图表", roles: ["admin", "editor"] }
       }
     ]
   },
@@ -254,98 +264,48 @@ export const constantRoutes = [
           title: "拖拽表格",
           roles: ["editor"]
         }
+      },
+      // 404 page must be placed at the end !!!
+      {
+        path: "*",
+        redirect: "/404",
+        hidden: true,
+        meta: {}
       }
     ]
-  },
+  }
+];
+export const asyncRoutes = [
   {
-    path: "/edit",
+    path: "/permission",
     component: Layout,
-    redirect: "/editor/markdown",
+    redirect: "/permission/directive",
+    alwaysShow: true,
     meta: {
-      title: "编辑器",
-      icon: "icon-fuwenben",
-      roles: ["admin", "editor"]
+      title: "权限",
+      icon: "icon-shujuquanxian",
+      roles: ["editor"]
     },
     children: [
       {
-        path: "markdown",
-        name: "Markdown",
-        component: () => import("@/views/edit/markdown"),
+        path: "directive",
+        component: () => import("@/views/permission/directive"),
+        name: "Directive",
         meta: {
-          title: "markdown编辑器",
-          roles: ["admin", "editor"]
+          title: "指令权限",
+          roles: ["editor"]
         }
       },
       {
-        path: "rich-text",
-        name: "RichText",
-        component: () => import("@/views/edit/rich-text"),
+        path: "role",
+        component: () => import("@/views/permission/role"),
+        name: "Role",
         meta: {
-          title: "富文本编辑器",
-          roles: ["admin", "editor"]
+          title: "用户权限",
+          roles: ["editor"]
         }
       }
     ]
-  },
-  {
-    path: "/drag",
-    component: Layout,
-    redirect: "/drag/dialog",
-    meta: {
-      title: "拖拽",
-      icon: "icon-tuozhuai",
-      roles: ["admin", "editor"]
-    },
-    children: [
-      {
-        path: "dialog-drag",
-        name: "DialogDrag",
-        component: () => import("@/views/drag/dialog-drag"),
-        meta: {
-          title: "dialog拖拽",
-          roles: ["admin", "editor"]
-        }
-      },
-      {
-        path: "kanban-drag",
-        name: "KanbanDrag",
-        component: () => import("@/views/drag/kanban-drag"),
-        meta: {
-          title: "看板拖拽",
-          roles: ["admin", "editor"]
-        }
-      },
-      {
-        path: "list-drag",
-        name: "ListDrag",
-        component: () => import("@/views/drag/list-drag"),
-        meta: {
-          title: "列表拖拽",
-          roles: ["admin", "editor"]
-        }
-      }
-    ]
-  },
-  {
-    path: "external-link",
-    component: Layout,
-    meta: { roles: ["admin", "editor"], icon: "icon-link" },
-    children: [
-      {
-        path: "https://panjiachen.github.io/vue-element-admin-site/#/",
-        meta: {
-          title: "External Link1",
-          roles: ["admin", "editor"]
-        }
-      }
-    ]
-  },
-  // 404 page must be placed at the end !!!
-  {
-    path: "*",
-    redirect: "/404",
-    hidden: true,
-    meta: {}
   }
 ];
 

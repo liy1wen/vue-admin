@@ -8,14 +8,12 @@ const closeLoading = () => {
   console.log(count, "===");
   count--;
   if (count == 0) {
-    // console.log(loadingInstance.close());
     loadingInstance.close();
   }
 };
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 });
 
@@ -30,9 +28,10 @@ service.interceptors.request.use(
       });
     }
     count++;
-    if (store.getters.token) {
-      config.headers["X-Token"] = getToken();
-    }
+    // if (store.getters.token) {
+    //   config.headers["X-Token"] = getToken();
+    // }
+
     return config;
   },
   error => {
