@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont";
   /* Project id 2513303 */
-  src: url('//at.alicdn.com/t/font_2513303_743tsm8b5u.woff2?t=1631086169084') format('woff2'),
-    url('//at.alicdn.com/t/font_2513303_743tsm8b5u.woff?t=1631086169084') format('woff'),
-    url('//at.alicdn.com/t/font_2513303_743tsm8b5u.ttf?t=1631086169084') format('truetype');
+  src: url('//at.alicdn.com/t/font_2513303_ajf8wboef9.woff2?t=1631113039947') format('woff2'),
+    url('//at.alicdn.com/t/font_2513303_ajf8wboef9.woff?t=1631113039947') format('woff'),
+    url('//at.alicdn.com/t/font_2513303_ajf8wboef9.ttf?t=1631113039947') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +12,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fuwenben1:before {
+  content: "\e7e4";
 }
 
 .icon-pdf:before {

@@ -130,7 +130,7 @@ export const constantRoutes = [
       {
         path: "https://panjiachen.github.io/vue-element-admin-site/#/",
         meta: {
-          title: "External Link1",
+          title: "外部链接",
           roles: ["admin", "editor"]
         }
       }
@@ -233,7 +233,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: "/table/complex-table",
     meta: {
-      title: "表格",
+      title: "表格组件",
       icon: "icon-form1",
       roles: ["admin", "editor"]
     },
@@ -264,15 +264,84 @@ export const constantRoutes = [
           title: "拖拽表格",
           roles: ["editor"]
         }
-      },
-      // 404 page must be placed at the end !!!
-      {
-        path: "*",
-        redirect: "/404",
-        hidden: true,
-        meta: {}
       }
     ]
+  },
+  {
+    path: "/drag",
+    component: Layout,
+    redirect: "/drag/dialog-drag",
+    meta: {
+      title: "拖拽组件",
+      icon: "icon-tuozhuai",
+      roles: ["admin", "editor"]
+    },
+    children: [
+      {
+        path: "dialog-drag",
+        name: "DialogDrag",
+        component: () => import("@/views/drag/dialog-drag"),
+        meta: {
+          title: "弹框拖拽",
+          roles: ["admin", "editor"]
+        }
+      },
+      {
+        path: "kanban-drag",
+        name: "KanbanDrag",
+        component: () => import("@/views/drag/kanban-drag"),
+        meta: {
+          title: "看板拖拽",
+          roles: ["editor"]
+        }
+      },
+      {
+        path: "list-drag",
+        name: "ListDrag",
+        component: () => import("@/views/drag/list-drag"),
+        meta: {
+          title: "拖拽列表",
+          roles: ["editor"]
+        }
+      }
+    ]
+  },
+  {
+    path: "/edit",
+    component: Layout,
+    redirect: "/edit/markdown",
+    meta: {
+      title: "文本编辑器",
+      icon: "icon-fuwenben1",
+      roles: ["admin", "editor"]
+    },
+    children: [
+      {
+        path: "markdown",
+        name: "Markdown",
+        component: () => import("@/views/edit/markdown"),
+        meta: {
+          title: "markdown",
+          roles: ["admin", "editor"]
+        }
+      },
+      {
+        path: "rich-text",
+        name: "RichText",
+        component: () => import("@/views/edit/rich-text"),
+        meta: {
+          title: "富文本",
+          roles: ["editor"]
+        }
+      }
+    ]
+  },
+  // 404 page must be placed at the end !!!
+  {
+    path: "*",
+    redirect: "/404",
+    hidden: true,
+    meta: {}
   }
 ];
 export const asyncRoutes = [
@@ -282,7 +351,7 @@ export const asyncRoutes = [
     redirect: "/permission/directive",
     alwaysShow: true,
     meta: {
-      title: "权限",
+      title: "权限配置",
       icon: "icon-shujuquanxian",
       roles: ["editor"]
     },
