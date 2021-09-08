@@ -258,6 +258,75 @@ export const constantRoutes = [
     ]
   },
   {
+    path: "/edit",
+    component: Layout,
+    redirect: "/editor/markdown",
+    meta: {
+      title: "编辑器",
+      icon: "icon-fuwenben",
+      roles: ["admin", "editor"]
+    },
+    children: [
+      {
+        path: "markdown",
+        name: "Markdown",
+        component: () => import("@/views/edit/markdown"),
+        meta: {
+          title: "markdown编辑器",
+          roles: ["admin", "editor"]
+        }
+      },
+      {
+        path: "rich-text",
+        name: "RichText",
+        component: () => import("@/views/edit/rich-text"),
+        meta: {
+          title: "富文本编辑器",
+          roles: ["admin", "editor"]
+        }
+      }
+    ]
+  },
+  {
+    path: "/drag",
+    component: Layout,
+    redirect: "/drag/dialog",
+    meta: {
+      title: "拖拽",
+      icon: "icon-tuozhuai",
+      roles: ["admin", "editor"]
+    },
+    children: [
+      {
+        path: "dialog-drag",
+        name: "DialogDrag",
+        component: () => import("@/views/drag/dialog-drag"),
+        meta: {
+          title: "dialog拖拽",
+          roles: ["admin", "editor"]
+        }
+      },
+      {
+        path: "kanban-drag",
+        name: "KanbanDrag",
+        component: () => import("@/views/drag/kanban-drag"),
+        meta: {
+          title: "看板拖拽",
+          roles: ["admin", "editor"]
+        }
+      },
+      {
+        path: "list-drag",
+        name: "ListDrag",
+        component: () => import("@/views/drag/list-drag"),
+        meta: {
+          title: "列表拖拽",
+          roles: ["admin", "editor"]
+        }
+      }
+    ]
+  },
+  {
     path: "external-link",
     component: Layout,
     meta: { roles: ["admin", "editor"], icon: "icon-link" },
