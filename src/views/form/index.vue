@@ -2,12 +2,16 @@
   <div class="mavonEditor">
     <mavon-editor
       :toolbars="markdownOption"
-      v-model="handbook"
+      v-model="content"
       :ishljs="true"
       ref="md"
+      @change="change"
       @imgAdd="$imgAdd"
       @imgDel="$imgDel"
     />
+    <el-button class="editor-btn" type="primary" @click="submit"
+      >提交</el-button
+    >
   </div>
 </template>
 <script>
@@ -50,10 +54,21 @@ export default {
         subfield: true, // 单双栏模式
         preview: true // 预览
       },
-      handbook: ""
+      content: "",
+      html: ""
     };
   },
   methods: {
+    change(value, render) {
+      // render 为 markdown 解析后的结果
+      this.html = render;
+      console.log(value, render);
+    },
+    submit() {
+      console.log(this.content);
+      console.log(this.html);
+      this.$message.success("提交成功！");
+    },
     // 绑定@imgAdd event
     $imgAdd(pos, $file) {
       // 第一步.将图片上传到服务器.
@@ -83,10 +98,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .mavonEditor {
   padding: 20px;
   width: 100%;
   height: 100%;
+  .editor-btn {
+    margin-top: 20px;
+  }
 }
 </style>

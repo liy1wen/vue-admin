@@ -81,14 +81,14 @@ export const constantRoutes = [
     redirect: "/form/index",
     meta: {
       title: "表格",
-      icon: "icon-form1"
+      icon: "icon-file-markdown-fill"
     },
     children: [
       {
         path: "index",
         name: "Form",
         component: () => import("@/views/form/index"),
-        meta: { title: "表单" }
+        meta: { title: "Markdown" }
       }
     ]
   },
@@ -118,21 +118,7 @@ export const constantRoutes = [
         path: "index",
         name: "Echart",
         component: () => import("@/views/chart/index"),
-        meta: { title: "图表" }
-      }
-    ]
-  },
-  {
-    path: "external-link",
-    component: Layout,
-    meta: { roles: ["admin", "editor"], icon: "icon-link" },
-    children: [
-      {
-        path: "https://panjiachen.github.io/vue-element-admin-site/#/",
-        meta: {
-          title: "外部链接",
-          roles: ["admin", "editor"]
-        }
+        meta: { title: "图表组件" }
       }
     ]
   },
@@ -148,7 +134,7 @@ export const constantRoutes = [
         path: "index",
         component: () => import("@/views/icons/index"),
         name: "Icon",
-        meta: { title: "图标", noCache: true }
+        meta: { title: "图标组件", noCache: true }
       }
     ]
   },
@@ -332,6 +318,41 @@ export const constantRoutes = [
         meta: {
           title: "富文本",
           roles: ["editor"]
+        }
+      }
+    ]
+  },
+  {
+    path: "/organization",
+    component: Layout,
+    redirect: "/organization/index",
+    meta: {
+      title: "组织架构",
+      icon: "icon-zuzhijiagou-",
+      roles: ["admin", "editor"]
+    },
+    children: [
+      {
+        path: "index",
+        name: "Index",
+        component: () => import("@/views/organization/index"),
+        meta: {
+          title: "组织架构",
+          roles: ["admin", "editor"]
+        }
+      }
+    ]
+  },
+  {
+    path: "external-link",
+    component: Layout,
+    meta: { roles: ["admin", "editor"], icon: "icon-link" },
+    children: [
+      {
+        path: "https://panjiachen.github.io/vue-element-admin-site/#/",
+        meta: {
+          title: "外部链接",
+          roles: ["admin", "editor"]
         }
       }
     ]
