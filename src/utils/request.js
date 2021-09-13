@@ -5,7 +5,7 @@ import { getToken } from "@/utils/auth";
 let count = 0;
 let loadingInstance = null;
 const closeLoading = () => {
-  console.log(count, "===");
+  // console.log(count, "===");
   count--;
   if (count == 0) {
     loadingInstance.close();
@@ -37,7 +37,7 @@ service.interceptors.request.use(
   error => {
     loadingInstance && closeLoading();
     // do something with request error
-    console.log(error); // for debug
+    // console.log(error); // for debug
     return Promise.reject(error);
   }
 );
@@ -47,7 +47,7 @@ service.interceptors.response.use(
   response => {
     loadingInstance && closeLoading();
     const res = response.data;
-    console.log(res,'---')
+    // console.log(res, "---");
     if (res.code !== 20000) {
       switch (res.code) {
         case 400:

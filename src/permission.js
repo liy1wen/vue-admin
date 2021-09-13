@@ -41,12 +41,13 @@ router.beforeEach(async (to, from, next) => {
             "permission/generateRoutes",
             roles
           );
-          // console.log(accessRoutes, "accessRoutes", roles);
-          const newRoutes = constantRoutes.options.routes.concat(accessRoutes);
-          console.log(newRoutes, accessRoutes);
-          router.options.routes = newRoutes;
+
           // dynamically add accessible routes
-          router.addRoutes(newRoutes);
+          const newRoutes = constantRoutes.options.routes.concat(accessRoutes);
+          // console.log(newRoutes, accessRoutes);
+          router.options.routes = newRoutes;
+          // // dynamically add accessible routes
+          // router.addRoutes(newRoutes);
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true });
