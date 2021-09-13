@@ -14,7 +14,6 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <!-- <svg-icon icon-class="user" /> -->
           <i class="iconfont icon-zhanghao"></i>
         </span>
         <el-input
@@ -109,7 +108,7 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
-        // console.log(route.query);
+        // console.log(route.query)
         this.redirect = route.query && route.query.redirect;
       },
       immediate: true

@@ -47,6 +47,7 @@ service.interceptors.response.use(
   response => {
     loadingInstance && closeLoading();
     const res = response.data;
+    console.log(res,'---')
     if (res.code !== 20000) {
       switch (res.code) {
         case 400:

@@ -1,124 +1,73 @@
 <template>
-  <div class="components-container">
-    <aside>
-      Markdown is based on
-      <a href="https://github.com/nhnent/tui.editor" target="_blank"
-        >tui.editor</a
-      >
-      ，simply wrapped with Vue.
-      <a
-        target="_blank"
-        href="https://panjiachen.github.io/vue-element-admin-site/feature/component/markdown-editor.html"
-      >
-        Documentation
-      </a>
-    </aside>
-
-    <div class="editor-container">
-      <el-tag class="tag-title">
-        Basic:
-      </el-tag>
-      <markdown-editor v-model="content1" height="300px" />
-    </div>
-
-    <div class="editor-container">
-      <el-tag class="tag-title">
-        Markdown Mode:
-      </el-tag>
-      <markdown-editor
-        ref="markdownEditor"
-        v-model="content2"
-        :options="{ hideModeSwitch: true, previewStyle: 'tab' }"
-        height="200px"
-      />
-    </div>
-
-    <div class="editor-container">
-      <el-tag class="tag-title">
-        Customize Toolbar:
-      </el-tag>
-      <markdown-editor
-        v-model="content3"
-        :options="{ toolbarItems: ['heading', 'bold', 'italic'] }"
-      />
-    </div>
-
-    <div class="editor-container">
-      <el-tag class="tag-title">
-        I18n:
-      </el-tag>
-      <el-alert
-        :closable="false"
-        title="You can change the language of the admin system to see the effect"
-        type="success"
-      />
-      <markdown-editor
-        ref="markdownEditor"
-        v-model="content4"
-        :language="language"
-        height="300px"
-      />
-    </div>
-
-    <el-button
-      style="margin-top:80px;"
-      type="primary"
-      icon="el-icon-document"
-      @click="getHtml"
-    >
-      Get HTML
-    </el-button>
-    <div v-html="html" />
+  <div>
+    <el-tiptap
+      v-model="content"
+      :extensions="extensions"
+    />
   </div>
 </template>
-
 <script>
-import MarkdownEditor from "@/components/MarkdownEditor";
-
-const content = `
-**This is test**
-
-* vue
-* element
-* webpack
-
-`;
+import {
+  Doc,
+  Text,
+  Paragraph,
+  Heading,
+  Bold,
+  Underline,
+  Italic,
+  Strike,
+  ListItem,
+  BulletList,
+  OrderedList,
+  Image,
+  TextAlign,
+  Table,
+  TableHeader,
+  TableCell,
+  TableRow,
+  TextColor,
+  Preview,
+  FontSize,
+  Fullscreen,
+  CodeBlock,
+  Blockquote
+} from 'element-tiptap';
 export default {
-  name: "MarkdownDemo",
-  components: { MarkdownEditor },
-  data() {
+  data () {
+    // editor extensions
+    // they will be added to menubar and bubble menu by the order you declare.
     return {
-      content1: content,
-      content2: content,
-      content3: content,
-      content4: content,
-      html: "",
-      languageTypeList: {
-        en: "en_US",
-        zh: "zh_CN",
-        es: "es_ES"
-      }
+      extensions: [
+        new Doc(),
+        new Text(),
+        new Paragraph(),
+        new Heading({ level: 5 }),
+        new Bold({ bubble: true }), // render command-button in bubble menu.
+        new Underline({ bubble: true, menubar: false }), // render command-button in bubble menu but not in menubar.
+        new Italic(),
+        new Strike(),
+        new ListItem(),
+        new BulletList(),
+        new OrderedList(),
+        new Image(),
+        new TextAlign(),
+        new Table(),
+        new TableHeader(),
+        new TableCell(),
+        new TableRow(),
+        new TextColor(),
+        new Preview(),
+        new FontSize(),
+        new Fullscreen(),
+        new CodeBlock(),
+        new Blockquote()
+      ],
+      // editor's content
+      content: `
+        <h1>Heading</h1>
+        <p>This Editor is awesome!</p>
+      `,
     };
   },
-  computed: {
-    language() {
-      return this.languageTypeList[this.$store.getters.language];
-    }
-  },
-  methods: {
-    getHtml() {
-      this.html = this.$refs.markdownEditor.getHtml();
-      console.log(this.html);
-    }
-  }
-};
+}
 </script>
-
-<style scoped>
-.editor-container {
-  margin-bottom: 30px;
-}
-.tag-title {
-  margin-bottom: 5px;
-}
-</style>

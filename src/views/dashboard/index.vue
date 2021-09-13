@@ -32,6 +32,12 @@
         @cropMoving="cropMoving"
       />
     </div>
+    <el-tree
+      :props="props"
+      :load="loadNode"
+      lazy
+      show-checkbox>
+    </el-tree>
   </div>
 </template>
 
@@ -66,7 +72,12 @@ export default {
         high: true, // 是否按照设备的dpr 输出等比例图片
         infoTrue: false, // true 为展示真实输出图片宽高 false 展示看到的截图框宽高
         enlarge: 1, // 图片根据截图框输出比例倍数
-        maxImgSize: 2000 // 限制图片最大宽度和高度
+        maxImgSize: 2000, // 限制图片最大宽度和高度
+        props: {
+          label: 'name',
+          children: 'zones',
+          isLeaf: 'leaf'
+        },
       }
     };
   },
@@ -76,7 +87,25 @@ export default {
     },
     realTime() {},
     imgLoad() {},
-    cropMoving() {}
+    cropMoving() {},
+    loadNode(node, resolve) {
+      console.log(node,'-----------------------');
+      if (node.level === 0) {
+        return resolve([{ name: 'region' }]);
+      }
+      if (node.level > 1) return resolve([]);
+
+      setTimeout(() => {
+        const data = [{
+          name: 'leaf',
+          leaf: true
+        }, {
+          name: 'zone'
+        }];
+
+        resolve(data);
+      }, 500);
+    }
   }
 };
 </script>

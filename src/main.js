@@ -19,6 +19,12 @@ import * as filters from "./filters"; // global filters
 import mavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 Vue.use(mavonEditor);
+import { ElementTiptapPlugin } from 'element-tiptap';
+// import this package's styles
+import 'element-tiptap/lib/index.css';
+
+// use this package's plugin
+Vue.use(ElementTiptapPlugin, { /* plugin options */ });
 // 无缝滚动插件
 import scroll from "vue-seamless-scroll";
 Vue.use(scroll);
