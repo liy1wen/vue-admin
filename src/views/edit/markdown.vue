@@ -3,11 +3,17 @@
     <el-tiptap
       v-model="content"
       :extensions="extensions"
-    />
+      placeholder="请输入内容 …"
+      width="100%"
+      height="600"
+      lang="zh"
+    ></el-tiptap>
   </div>
 </template>
+
 <script>
 import {
+  // 需要的 extensions
   Doc,
   Text,
   Paragraph,
@@ -19,55 +25,101 @@ import {
   ListItem,
   BulletList,
   OrderedList,
+  Link,
   Image,
+  Iframe,
+  CodeBlock,
+  Blockquote,
+  TodoItem,
+  TodoList,
   TextAlign,
+  FontSize,
+  FontType,
+  SelectAll,
+  Fullscreen,
+  Print,
+  Preview,
+  TextHighlight,
+  TextColor,
+  FormatClear,
   Table,
   TableHeader,
   TableCell,
   TableRow,
-  TextColor,
-  Preview,
-  FontSize,
-  Fullscreen,
-  CodeBlock,
-  Blockquote
-} from 'element-tiptap';
+  History,
+  TrailingNode,
+  HardBreak,
+  HorizontalRule,
+  LineHeight,
+  Indent
+} from "element-tiptap";
+import { ElementTiptap } from "element-tiptap";
+import "element-tiptap/lib/index.css";
 export default {
-  data () {
-    // editor extensions
-    // they will be added to menubar and bubble menu by the order you declare.
+  name: "",
+  components: {
+    "el-tiptap": ElementTiptap
+  },
+  data() {
     return {
       extensions: [
         new Doc(),
         new Text(),
         new Paragraph(),
-        new Heading({ level: 5 }),
-        new Bold({ bubble: true }), // render command-button in bubble menu.
-        new Underline({ bubble: true, menubar: false }), // render command-button in bubble menu but not in menubar.
+        new Heading({ level: 6 }),
+        new Bold({ bubble: true }), // 在气泡菜单中渲染菜单按钮
+        new Underline({ bubble: true, menubar: false }), // 在气泡菜单而不在菜单栏中渲染菜单按钮
         new Italic(),
         new Strike(),
         new ListItem(),
         new BulletList(),
         new OrderedList(),
+        new Link(),
         new Image(),
+        // {
+        // 默认会把图片生成 base64 字符串和内容存储在一起，如果需要自定义图片上传
+        // uploadRequest(file) {
+        //   如果接口要求 Content-Type 是 multipart/form-data，则请求体必须使用 FormData
+        //   const fd = new FormData()
+        //   fd.append('image', file)
+        //   第1个 return 是返回 Promise 对象
+        //   为什么？因为 axios 本身就是返回 Promise 对象
+        //   return uploadImage(fd).then(res => {
+        //     // 这个 return 是返回最后的结果
+        //     return res.data.data.url
+        //   })
+        // } // 图片的上传方法，返回一个 Promise<url>
+        // }
+        new Iframe(),
+        new CodeBlock(),
+        new Blockquote(),
+        new TodoItem(),
+        new TodoList(),
         new TextAlign(),
-        new Table(),
+        new FontSize(),
+        new FontType(),
+        new SelectAll(),
+        new Fullscreen(),
+        new Print(),
+        new Preview(),
+        new TextHighlight(),
+        new TextColor(),
+        new FormatClear(),
+        new Table({ resizable: true }),
         new TableHeader(),
         new TableCell(),
         new TableRow(),
-        new TextColor(),
-        new Preview(),
-        new FontSize(),
-        new Fullscreen(),
-        new CodeBlock(),
-        new Blockquote()
+        new History(),
+        new TrailingNode(),
+        new HardBreak(),
+        new HorizontalRule(),
+        new LineHeight(),
+        new Indent()
       ],
-      // editor's content
-      content: `
-        <h1>Heading</h1>
-        <p>This Editor is awesome!</p>
-      `,
+      content: ""
     };
-  },
-}
+  }
+};
 </script>
+
+<style lang="scss" scoped></style>

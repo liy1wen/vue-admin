@@ -57,7 +57,7 @@ export default {
     ...mapGetters(["sidebar", "avatar", "device"])
   },
   created() {
-    console.log(this.device, "-----");
+    // console.log(this.device, "-----");
   },
   methods: {
     toggleSideBar() {

@@ -60,18 +60,14 @@ export const constantRoutes = [
     component: Layout,
     redirect: "/dashboard",
     meta: {
-      icon: "icon-dashboard",
-      title: "控制台"
+      icon: "icon-dashboard"
     },
     children: [
       {
         path: "dashboard",
         component: () => import("@/views/dashboard/index"),
         name: "Dashboard",
-        meta: {
-          title: "控制台",
-          affix: true
-        }
+        meta: { title: "控制台", affix: true }
       }
     ]
   },
@@ -377,13 +373,6 @@ export const constantRoutes = [
         }
       }
     ]
-  },
-  // 404 page must be placed at the end !!!
-  {
-    path: "*",
-    redirect: "/404",
-    hidden: true,
-    meta: {}
   }
 ];
 export const asyncRoutes = [
@@ -417,6 +406,13 @@ export const asyncRoutes = [
         }
       }
     ]
+  },
+  // 404 page must be placed at the end !!!
+  {
+    path: "*",
+    redirect: "/404",
+    hidden: true,
+    meta: {}
   }
 ];
 
