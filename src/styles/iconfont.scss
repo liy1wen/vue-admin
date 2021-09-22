@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2513303 */
-  src: url('//at.alicdn.com/t/font_2513303_2f5w4ro0904.woff2?t=1631192757581') format('woff2'),
-       url('//at.alicdn.com/t/font_2513303_2f5w4ro0904.woff?t=1631192757581') format('woff'),
-       url('//at.alicdn.com/t/font_2513303_2f5w4ro0904.ttf?t=1631192757581') format('truetype');
+  src: url('//at.alicdn.com/t/font_2513303_8mlsty3p8gf.woff2?t=1632297013469') format('woff2'),
+       url('//at.alicdn.com/t/font_2513303_8mlsty3p8gf.woff?t=1632297013469') format('woff'),
+       url('//at.alicdn.com/t/font_2513303_8mlsty3p8gf.ttf?t=1632297013469') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shuiyin:before {
+  content: "\e6bc";
 }
 
 .icon-zuzhijiagou-:before {

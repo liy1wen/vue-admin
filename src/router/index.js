@@ -293,6 +293,27 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/watermark',
+    component: Layout,
+    redirect: '/watermark/index',
+    meta: {
+      title: "水印",
+      icon: "icon-shuiyin",
+      roles: ["admin", "editor"]
+    },
+    children: [
+      {
+        path: "index",
+        name: "Watermark",
+        component: () => import("@/views/watermark/index"),
+        meta: {
+          title: "水印效果",
+          roles: ["admin", "editor"]
+        }
+      },
+    ]
+  },
+  {
     path: "/edit",
     component: Layout,
     redirect: "/edit/markdown",
